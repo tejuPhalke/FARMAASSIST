@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmAssist - Smart Farming Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <i class="fas fa-seedling"></i>
+                FarmAssist
+            </a>
+            <nav class="nav" id="nav">
+                <a href="#" class="nav-btn active" data-page="home">Home</a>
+                <a href="#" class="nav-btn" data-page="weather">Weather</a>
+                <a href="#" class="nav-btn" data-page="fertilizer">Fertilizer</a>
+                <a href="#" class="nav-btn" data-page="profit">Profit</a>
+                <a href="#" class="nav-btn" data-page="market">Market</a>
+                <a href="#" class="nav-btn" data-page="search"><i class="fab fa-google"></i> Search</a>
+            </nav>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to FarmAssist</h1>
+                <p>Your comprehensive smart farming companion with weather updates, crop guidance, fertilizer suggestions, market prices, and profit calculations.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="tool-card">
+                    <h3><i class="fas fa-cloud-sun"></i> Weather Monitoring</h3>
+                    <p>Get real-time weather updates, 7-day forecasts, and farming recommendations based on weather conditions.</p>
+                    <button class="btn" onclick="showPage('weather')">
+                        <i class="fas fa-arrow-right"></i>
+                        Check Weather
+                    </button>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-flask"></i> Fertilizer Calculator</h3>
+                    <p>Calculate precise fertilizer requirements for your crops based on area and crop type.</p>
+                    <button class="btn" onclick="showPage('fertilizer')">
+                        <i class="fas fa-calculator"></i>
+                        Calculate Fertilizer
+                    </button>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-chart-line"></i> Market Prices</h3>
+                    <p>Stay updated with current market prices, trends, and get price alerts for your crops.</p>
+                    <button class="btn" onclick="showPage('market')">
+                        <i class="fas fa-chart-bar"></i>
+                        View Prices
+                    </button>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-coins"></i> Profit Calculator</h3>
+                    <p>Calculate potential profits, analyze costs, and make informed farming decisions.</p>
+                    <button class="btn" onclick="showPage('profit')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Calculate Profit
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> Quick Tips</h2>
+                <div class="tip-card">
+                    <h4>Today's Farming Tips:</h4>
+                    <p>• Check weather forecast before planning field activities</p>
+                    <p>• Monitor market prices for optimal selling time</p>
+                    <p>• Use fertilizer calculator for precise nutrient management</p>
+                    <p>• Keep track of costs for better profit analysis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather Page -->
+    <div id="weather" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fas fa-cloud-sun"></i> Weather Forecast</h1>
+                <p>Get accurate weather information and farming recommendations</p>
+            </div>
+
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Current Location Weather</h3>
+                    <div class="form-group">
+                        <label for="cityInput">Enter your location:</label>
+                        <input type="text" id="cityInput" placeholder="City name" value="New Delhi">
+                    </div>
+                    <button class="btn" onclick="getWeather()">
+                        <i class="fas fa-search"></i>
+                        Get Weather
+                    </button>
+                    <div id="weatherResult" class="result"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-calendar-week"></i> 7-Day Forecast</h3>
+                    <div class="weather-forecast">
+                        <div class="weather-day">
+                            <strong>Mon</strong><br>
+                            <i class="fas fa-sun" style="color: #ffeb3b;"></i> 28°C<br>
+                            <small>Sunny</small>
+                        </div>
+                        <div class="weather-day">
+                            <strong>Tue</strong><br>
+                            <i class="fas fa-cloud-sun" style="color: #90a4ae;"></i> 26°C<br>
+                            <small>Cloudy</small>
+                        </div>
+                        <div class="weather-day rainy">
+                            <strong>Wed</strong><br>
+                            <i class="fas fa-cloud-rain" style="color: #2196f3;"></i> 24°C<br>
+                            <small>Rainy</small>
+                        </div>
+                        <div class="weather-day rainy">
+                            <strong>Thu</strong><br>
+                            <i class="fas fa-cloud-showers-heavy" style="color: #2196f3;"></i> 25°C<br>
+                            <small>Showers</small>
+                        </div>
+                        <div class="weather-day">
+                            <strong>Fri</strong><br>
+                            <i class="fas fa-sun" style="color: #ffeb3b;"></i> 27°C<br>
+                            <small>Sunny</small>
+                        </div>
+                        <div class="weather-day">
+                            <strong>Sat</strong><br>
+                            <i class="fas fa-cloud-sun" style="color: #90a4ae;"></i> 29°C<br>
+                            <small>Partly Cloudy</small>
+                        </div>
+                        <div class="weather-day">
+                            <strong>Sun</strong><br>
+                            <i class="fas fa-sun" style="color: #ffeb3b;"></i> 30°C<br>
+                            <small>Sunny</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-leaf"></i> Farm Weather Recommendations</h3>
+                    <div class="tip-card">
+                        <h4>Today's Recommendations:</h4>
+                        <p>• <strong>Good day for:</strong> Harvesting, field preparation</p>
+                        <p>• <strong>Avoid:</strong> Pesticide spraying (rain expected)</p>
+                        <p>• <strong>Irrigation:</strong> Reduce by 30% due to upcoming rain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fertilizer Page -->
+    <div id="fertilizer" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fas fa-flask"></i> Fertilizer Calculator</h1>
+                <p>Calculate precise fertilizer requirements for optimal crop growth</p>
+            </div>
+
+            <div class="card">
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3>Calculate Fertilizer Requirements</h3>
+                        <div class="form-group">
+                            <label for="fertilizerCrop">Choose Crop:</label>
+                            <select id="fertilizerCrop">
+                                <option value="wheat">Wheat</option>
+                                <option value="rice">Rice</option>
+                                <option value="corn">Corn</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="cotton">Cotton</option>
+                                <option value="sugarcane">Sugarcane</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fertilizerArea">Area (in acres):</label>
+                            <input type="number" id="fertilizerArea" placeholder="Enter area in acres">
+                        </div>
+                        <div class="form-group">
+                            <label for="soilType">Soil Type:</label>
+                            <select id="soilType">
+                                <option value="clay">Clay Soil</option>
+                                <option value="sandy">Sandy Soil</option>
+                                <option value="loam">Loam Soil</option>
+                                <option value="silt">Silt Soil</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="calculateFertilizer()">
+                            <i class="fas fa-calculator"></i>
+                            Calculate
+                        </button>
+                        <div id="fertilizerResult" class="result"></div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3><i class="fas fa-info-circle"></i> Fertilizer Guide</h3>
+                        <div class="tip-card">
+                            <h4>Application Tips:</h4>
+                            <p>• <strong>Nitrogen (N):</strong> Apply in 2-3 split doses</p>
+                            <p>• <strong>Phosphorus (P):</strong> Apply as basal dose before sowing</p>
+                            <p>• <strong>Potassium (K):</strong> Apply half as basal, half at flowering</p>
+                            <p>• <strong>Best time:</strong> Early morning or evening</p>
+                            <p>• <strong>Weather:</strong> Avoid application before heavy rain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Page -->
+    <div id="market" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fas fa-chart-line"></i> Market Prices</h1>
+                <p>Stay updated with current market trends and prices</p>
+            </div>
+
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3><i class="fas fa-store"></i> Current Market Prices</h3>
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th>Price (₹/quintal)</th>
+                                <th>Change</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wheat</td>
+                                <td>₹2,150</td>
+                                <td class="price-increase">+5%</td>
+                                <td><i class="fas fa-arrow-up"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Rice</td>
+                                <td>₹2,800</td>
+                                <td class="price-decrease">-2%</td>
+                                <td><i class="fas fa-arrow-down"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Tomato</td>
+                                <td>₹3,200</td>
+                                <td class="price-increase">+12%</td>
+                                <td><i class="fas fa-arrow-up"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Potato</td>
+                                <td>₹1,800</td>
+                                <td class="price-increase">+8%</td>
+                                <td><i class="fas fa-arrow-up"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Onion</td>
+                                <td>₹2,500</td>
+                                <td class="price-decrease">-3%</td>
+                                <td><i class="fas fa-arrow-down"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn" onclick="updatePrices()">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh Prices
+                    </button>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-bell"></i> Price Alerts</h3>
+                    <div class="form-group">
+                        <label for="alertCrop">Crop:</label>
+                        <select id="alertCrop">
+                            <option value="wheat">Wheat</option>
+                            <option value="rice">Rice</option>
+                            <option value="tomato">Tomato</option>
+                            <option value="potato">Potato</option>
+                            <option value="onion">Onion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetPrice">Target Price (₹/quintal):</label>
+                        <input type="number" id="targetPrice" placeholder="Enter target price">
+                    </div>
+                    <button class="btn" onclick="setPriceAlert()">
+                        <i class="fas fa-bell"></i>
+                        Set Price Alert
+                    </button>
+                    <div id="alertResult" class="result"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-chart-bar"></i> Market Analysis</h3>
+                    <div class="tip-card">
+                        <h4>Market Insights:</h4>
+                        <p>• <strong>Tomatoes:</strong> High demand due to festival season</p>
+                        <p>• <strong>Wheat:</strong> Steady growth expected until harvest</p>
+                        <p>• <strong>Best time to sell:</strong> Next 2 weeks for vegetables</p>
+                        <p>• <strong>Storage tip:</strong> Hold grains for better prices next month</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profit Page -->
+    <div id="profit" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fas fa-coins"></i> Profit Calculator</h1>
+                <p>Calculate your farming profits and analyze costs</p>
+            </div>
+
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Profit Calculation</h3>
+                    <div class="form-group">
+                        <label for="profitCrop">Select Crop:</label>
+                        <select id="profitCrop">
+                            <option value="wheat">Wheat</option>
+                            <option value="rice">Rice</option>
+                            <option value="tomato">Tomato</option>
+                            <option value="potato">Potato</option>
+                            <option value="corn">Corn</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profitArea">Area (acres):</label>
+                        <input type="number" id="profitArea" placeholder="Enter area">
+                    </div>
+                    <div class="form-group">
+                        <label for="profitYield">Expected Yield (quintal/acre):</label>
+                        <input type="number" id="profitYield" placeholder="Enter expected yield">
+                    </div>
+                    <div class="form-group">
+                        <label for="profitSellingPrice">Selling Price (₹/quintal):</label>
+                        <input type="number" id="profitSellingPrice" placeholder="Enter selling price">
+                    </div>
+                    <button class="btn" onclick="calculateProfit()">
+                        <i class="fas fa-calculator"></i>
+                        Calculate Profit
+                    </button>
+                    <div id="profitResult" class="result"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Cost Analysis</h3>
+                    <div class="form-group">
+                        <label for="seedCost">Seed Cost (₹):</label>
+                        <input type="number" id="seedCost" placeholder="Enter seed cost">
+                    </div>
+                    <div class="form-group">
+                        <label for="fertilizerCost">Fertilizer Cost (₹):</label>
+                        <input type="number" id="fertilizerCost" placeholder="Enter fertilizer cost">
+                    </div>
+                    <div class="form-group">
+                        <label for="laborCost">Labor Cost (₹):</label>
+                        <input type="number" id="laborCost" placeholder="Enter labor cost">
+                    </div>
+                    <div class="form-group">
+                        <label for="otherCosts">Other Costs (₹):</label>
+                        <input type="number" id="otherCosts" placeholder="Equipment, pesticides, etc.">
+                    </div>
+                    <button class="btn" onclick="calculateDetailedProfit()">
+                        <i class="fas fa-chart-pie"></i>
+                        Analyze Costs
+                    </button>
+                    <div id="costResult" class="result"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-lightbulb"></i> Profit Tips</h3>
+                    <div class="tip-card">
+                        <h4>Maximize Your Profits:</h4>
+                        <p>• Monitor market prices for optimal selling time</p>
+                        <p>• Use precision farming techniques</p>
+                        <p>• Reduce post-harvest losses with proper storage</p>
+                        <p>• Consider value-added processing</p>
+                        <p>• Plan crop rotation for soil health</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Search Page -->
+    <div id="search" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fab fa-google"></i> Google Search</h1>
+                <p>Search the web for farming information, news, and resources</p>
+            </div>
+
+            <div class="card">
+                <div class="tool-card" style="max-width: 800px; margin: 0 auto;">
+                    <h3><i class="fas fa-search"></i> Search Google</h3>
+                    <div class="form-group">
+                        <label for="googleSearchInput">Enter your search query:</label>
+                        <input type="text" id="googleSearchInput" placeholder="Search for farming tips, crop diseases, market trends..." onkeypress="handleSearchKeyPress(event)">
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn" onclick="performGoogleSearch()">
+                            <i class="fab fa-google"></i>
+                            Search on Google
+                        </button>
+                        <button class="btn btn-secondary" onclick="searchFarmingTips()">
+                            <i class="fas fa-leaf"></i>
+                            Farming Tips
+                        </button>
+                        <button class="btn btn-secondary" onclick="searchCropDiseases()">
+                            <i class="fas fa-bug"></i>
+                            Crop Diseases
+                        </button>
+                        <button class="btn btn-secondary" onclick="searchMarketTrends()">
+                            <i class="fas fa-chart-line"></i>
+                            Market Trends
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="tool-card">
+                    <h3><i class="fas fa-book"></i> Quick Resources</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <a href="https://www.google.com/search?q=modern+farming+techniques" target="_blank" class="btn" style="text-decoration: none;">
+                            <i class="fas fa-tractor"></i>
+                            Modern Farming Techniques
+                        </a>
+                        <a href="https://www.google.com/search?q=organic+farming+guide" target="_blank" class="btn" style="text-decoration: none;">
+                            <i class="fas fa-seedling"></i>
+                            Organic Farming Guide
+                        </a>
+                        <a href="https://www.google.com/search?q=agricultural+news+today" target="_blank" class="btn" style="text-decoration: none;">
+                            <i class="fas fa-newspaper"></i>
+                            Agricultural News
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-link"></i> Useful Links</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <a href="https://www.google.com/search?q=weather+forecast+farming" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                            <i class="fas fa-cloud-sun"></i>
+                            Weather Updates
+                        </a>
+                        <a href="https://www.google.com/search?q=government+farming+schemes" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                            <i class="fas fa-landmark"></i>
+                            Government Schemes
+                        </a>
+                        <a href="https://www.google.com/search?q=agricultural+technology+innovations" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                            <i class="fas fa-robot"></i>
+                            AgriTech Innovations
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3><i class="fas fa-lightbulb"></i> Search Tips</h3>
+                    <div class="tip-card">
+                        <h4>Get Better Results:</h4>
+                        <p>• Use specific keywords (e.g., "wheat rust disease treatment")</p>
+                        <p>• Include your region for local info</p>
+                        <p>• Use quotes for exact phrases</p>
+                        <p>• Add "PDF" to find downloadable guides</p>
+                        <p>• Try "site:gov" for government resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FarmAssist - Smart Farming Solutions. All rights reserved.</p>
+            <p>Empowering farmers with technology for better yields and profits.</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+      </body>  
+</html>
